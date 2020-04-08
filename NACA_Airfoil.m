@@ -13,7 +13,7 @@
 % Pitching_Axis - Position of pitching axis in complex coordinates - [1]
 % theta - Angle of attack - [1] - [rad]
 % PANELS - Number of Panels for discretisation - [1]
-% Setting PLOTS = "YES" will produce plots
+% Setting PLOTS = 1 will produce plots
 
 %% Outputs ----------------------------------------------------------------
 % za - complex coordinates of the airfoil surface - [1x(PANELS+1)]
@@ -73,7 +73,7 @@ yc = yc + imag(Pitching_Axis);
 za = xa + 1i*ya;
 
 %% Plotting Results -------------------------------------------------------
-if PLOTS == "YES"
+if PLOTS == 1
    figure(201), hold on, axis equal
    plot(xa,ya,'k-');
    plot(xa,yc,'k--');

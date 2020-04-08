@@ -8,7 +8,7 @@
 % Z_core - positions assigned to each vortex centre - [nx1]
 % V_core - velocity of positions asigned to each vortex core - [nx1]
 % Gamma2_core - Gamma2 of positions asigned to each vortex core - [nx1]
-% Setting PLOTS = "YES" will produce plots
+% Setting PLOTS = 1 will produce plots
 
 %% Outputs ----------------------------------------------------------------
 % Circ_LO - circulation of the fit vortex - [1]
@@ -150,7 +150,7 @@ end
 R_squared_LO = Stats_LO.rsquare;
 
 %% Plotting Root Finding --------------------------------------------------
-if PLOTS == "YES"
+if PLOTS == 1
    figure(61), hold on, grid on
    % Lamb Oseen Plots
    plot(R,Circ_R,'bo')

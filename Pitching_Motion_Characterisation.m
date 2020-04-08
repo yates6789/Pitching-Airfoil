@@ -28,7 +28,7 @@ omega = deg2rad(16.8386);                                                   % Pi
 %% Airfoil Contour --------------------------------------------------------
 NACA = [0,0,0.18];
 PANELS = 100;
-z = NACA_Airfoil(NACA(1),NACA(2),NACA(3),Chord_Length,Pitching_Axis,theta,PANELS,'NO');
+z = NACA_Airfoil(NACA(1),NACA(2),NACA(3),Chord_Length,Pitching_Axis,theta,PANELS,0);
 
 %% Importing Data ---------------------------------------------------------
 % Raw Data
@@ -55,10 +55,10 @@ Z = x + 1i*y;
 V = u - 1i*v;
 
 %% Gamma1 - Criterion -----------------------------------------------------
-[Gamma1_cond,Gamma1,Z1_centre,Z1_core,V1_core] = Gamma1_Criterion(Z,V-U,N1,Gamma_lim,Gamma_tol,"NO");
+[Gamma1_cond,Gamma1,Z1_centre,Z1_core,V1_core] = Gamma1_Criterion(Z,V-U,N1,Gamma_lim,Gamma_tol,0);
 
 %% Gamma2 - Criterion -----------------------------------------------------
-[Gamma2_cond,Gamma2,Z2_centre,Z2_core,V2_core,Gamma2_core] = Gamma2_Criterion(Z,V,N2,Gamma_lim,Z1_centre,Gamma_tol,"NO");
+[Gamma2_cond,Gamma2,Z2_centre,Z2_core,V2_core,Gamma2_core] = Gamma2_Criterion(Z,V,N2,Gamma_lim,Z1_centre,Gamma_tol,0);
 
 %% Vortex Fitting ---------------------------------------------------------
 % Initialising vortex fitting matrices
@@ -70,7 +70,7 @@ R_squared = zeros(size(Z2_centre));
 % Vortex Fitting
 for i = 1:length(Z2_centre)
     [Circ(i),Radius(i),Circ_Error(i),Radius_Error(i),R_squared(i)] = ...
-     Circulation(Z2_centre(:,i),Z2_core(:,i),V2_core(:,i),Gamma2_core(:,i),"NO");
+     Circulation(Z2_centre(:,i),Z2_core(:,i),V2_core(:,i),Gamma2_core(:,i),0);
 end
 
 %% Removing Vortices outlier vortices -------------------------------------
@@ -127,10 +127,10 @@ Vk = U + V_FV_k + V_PM_k;
 
 %% Evaluating strength distribution of bound vortex sheet -----------------
 % Applying kutta condition
-[Str_Kutta,Circ_Kutta,Cp_Kutta,Fx_Kutta,Fy_Kutta] = Str_VS(z,Vk,U,0,"NO");
+[Str_Kutta,Circ_Kutta,Cp_Kutta,Fx_Kutta,Fy_Kutta] = Str_VS(z,Vk,U,0,0);
 % Relaxed kutta condition
 [K,R_Residual,R_Kutta] = K_fit(z,Vk,U,U + Vel_FV(Z2_centre,Circ,Radius,Z),Z,V);
-[Str_Residual,Circ_Residual,Cp_Residual,Fx_Residual,Fy_Residual] = Str_VS(z,Vk,U,K,"NO");
+[Str_Residual,Circ_Residual,Cp_Residual,Fx_Residual,Fy_Residual] = Str_VS(z,Vk,U,K,0);
 
 %% Roots of strength distribution -----------------------------------------
 % Arc Length

@@ -11,7 +11,7 @@
 % Vk - Complex Conjugate Velocity associated with z (without sheet) [1xn]
 % U - Free Stream Velocity - [1]
 % K - Net Strength of Trailing Edge (K = 0 for Kutta Condition) - [1]
-% Setting PLOTS = "YES" will produce plots
+% Setting PLOTS = 1 will produce plots
 
 %% Outputs ----------------------------------------------------------------
 % Str - Strength distribution of vortex sheet - [1xn]
@@ -152,7 +152,7 @@ Fx = sum(Cp(1:PANELS).*Nx.*dl);
 Fy = sum(Cp(1:PANELS).*Ny.*dl);
 
 %% Surface Vecotor Plots --------------------------------------------------
-if PLOTS == "YES"
+if PLOTS == 1
    figure(101), hold on, grid on, axis equal
    plot(X,Y,'k')
    quiver(co(1,:),co(2,:),Nx,Ny)
@@ -164,7 +164,7 @@ if PLOTS == "YES"
 end
 
 %% Strength Plot ----------------------------------------------------------
-if PLOTS == "YES"
+if PLOTS == 1
    figure(102), hold on
    plot([0,cumsum(sqrt(dx(1+m:end-m).^2 + dy(1:end).^2))],Str(1:end))
    title('Panel Strength')
@@ -174,7 +174,7 @@ if PLOTS == "YES"
 end
 
 %% Cp Plot ----------------------------------------------------------------
-if PLOTS == "YES"
+if PLOTS == 1
    figure(103), hold on
    plot(X(1+m:end-m),Cp(1+m:end-m))
    title('Pressure Coefficient')

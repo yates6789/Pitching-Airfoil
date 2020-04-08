@@ -9,7 +9,7 @@
 % low_lim - Lower value to define vortex core (approx. 2/pi)
 % z_centre - first estimate of vortex centres - [1xn]
 % tol - Relative distance threshold between vortex centres - [1]
-% Setting PLOTS = "YES" will produce plots
+% Setting PLOTS = 1 will produce plots
 
 %% Outputs ----------------------------------------------------------------
 % Gamma2_cond - Gamma2 matrix with values > low_lim set to NaN - [ixj]
@@ -181,7 +181,7 @@ for i = 1:length(Z_centre)
 end
 
 %% Gamma2 - Criterion Plots -----------------------------------------------
-if PLOTS == "YES"
+if PLOTS == 1
    figure(51)
    hold on, axis square
    contourf(X,Y,Gamma2)
